@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>首页</title>
+        <meta charset="utf-8"/>
+		
+		<link rel="stylesheet" href="css/main.css" type="text/css"/>
+        <style type="text/css">
+            .PageOneCoin{
+                width: 1000px;
+                height: 800px;
+                position: relative;
+                margin: 0 auto; /* 居中显示 */
+
+            }
+            .BookDivDiv{
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                transform:scale(1.2);
+            }
+            .BookDivDiv.addXY{
+
+                animation: Addscale 2s linear 1s forwards;
+            }
+            .BookDiv{
+                width:100px;
+                height:562.5px;
+                overflow: hidden;
+                transition: all 3s linear 0s;
+            }
+            .overBook{
+                 width: 1000px;
+
+                height: auto;
+                position: relative;
+                margin: 0 auto; /* 居中显示 */
+            }
+            .leftBook{
+                position: absolute;
+
+                width: 190px;
+                height: 665px;
+                transform:translate(-70px,8px);
+                z-index: 1;
+                transition: all 3s linear 0s;
+            }
+            .downBook{
+                
+                position: absolute;
+                width: 1250px;
+                /* width:260px; */
+                z-index: 1;
+                
+                transition: all 3s linear 0s;
+            }
+
+            @keyframes Addscale {
+                100% { transform:scale(1.55); }
+            }
+        </style>
+        <script type="text/javascript">
+            function bookpaly(){
+                let daBook = document.querySelector(".BookDiv");
+                daBook.style.transform="translate(-50px,0)";
+                daBook.style.width="1000px";
+                
+
+                let leftBook =  document.querySelector(".leftBook");
+                leftBook.style.transform="translate(-560px,8px)";
+                let downBook =  document.querySelector(".downBook");
+                downBook.style.transform="translate(562px,0)";
+                document.querySelector('.BookDivDiv').classList.add('addXY');
+                setTimeout(() => {
+                    
+                }, 3300);
+            }
+        </script>
+    </head>
+    <body >
+        <!-- <a href="PageTwo.html"><img class="PageOneCoin" src="Images/PageOneIcon.png" alt="牡丹亭" /></a> -->
+         <div  class="BookDivDiv">
+            <img  class="leftBook" src="img/pageOneImages/LeftFrsme.png" />
+            <div class="BookDiv" >
+                <img  class="overBook" src="img/pageOneImages/123.png" />
+
+            </div>
+            <img class="downBook" src="img/oneIcon.png" onclick="bookpaly()"/>
+         </div>
+        
+    </body>
+</html>

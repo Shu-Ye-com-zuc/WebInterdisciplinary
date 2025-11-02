@@ -1,0 +1,15 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+    margin:0 auto;
+    position:relative;
+    }
+body{
+    background-image: url("img/PageOneBackground.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	background-repeat: no-repeat;
+    background-size: cover;
+}

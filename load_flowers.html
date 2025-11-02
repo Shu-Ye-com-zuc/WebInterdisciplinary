@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LoadingFlowerFalling</title>
+        <meta charset="utf-8"/>
+		
+		<link rel="stylesheet" href="css/main.css" type="text/css"/>
+        <style type="text/css">
+            .flowerCoin{
+                position: absolute;
+                width: 50px;
+                aspect-ratio: 1;
+                animation: flowerRotate 3s linear infinite forwards;
+            }
+            .progressgif{
+                transition: transform 5s linear 1s;
+            }
+            .progressLine{
+                height: 40px;
+                width:1000px;
+                overflow: hidden;
+                border-radius: 20px;
+                background-color: rgb(159, 161, 159);
+                border: 5px solid rgb(97, 83, 83);
+            }
+            .proLine{
+                height: 40px;
+                width:1100px;
+                background-color: green;
+                border-radius: 20px;
+                position: relative;
+                Left:-1100px;
+                transition: transform 5s linear 1s;
+            }
+
+            @keyframes flowerRotate {
+                0% { opacity: 0.8; transform: translate(0,0) scale(0.9) rotateZ(0deg); }
+                50% { opacity: 1; transform: translate(0,0) scale(1) rotateZ(180deg); }
+                100% { opacity: 0.8; transform: translate(0,0) scale(0.9) rotateZ(360deg); }
+            }
+        </style>
+        <script type="text/javascript">
+            function init(){
+                const flowers = document.getElementsByClassName("flowerCoin");
+                const winWid = window.innerWidth;
+                const winHeight = window.innerHeight;
+                const speeds = []; //下落速度
+
+                // 初始化花朵位置和速度
+                for(let i = 0; i < flowers.length; i++){
+                    speeds.push(Math.random() * 3 + 2);
+                    resetFlower(flowers[i]);
+                }
+
+                // 重置位置
+                function resetFlower(flower){
+                    flower.style.width = `${25+25*Math.random()}px`;
+                    flower.style.left = `${Math.random() * winWid}px`;
+                    flower.style.top = `-${Math.random() * 100 + 50}px`;
+                }
+
+                // 下落动画
+                function moveFlowers(){
+                    for(let i = 0; i < flowers.length; i++){
+                        const flower = flowers[i];
+                        const currentTop = parseFloat(flower.style.top);
+                        flower.style.top = `${currentTop + speeds[i]}px`;
+
+                        // 超出屏幕重置
+                        if(currentTop > winHeight + 50){
+                            resetFlower(flower);
+                        }
+                    }
+                    requestAnimationFrame(moveFlowers);
+                }
+
+                // 启动动画
+                moveFlowers();
+            }
+            function onProgress(){
+                onProgressLine();
+                onProgressgif();
+
+
+                function onProgressLine(){
+                    const PL = document.querySelector(".proLine");
+                    PL.style.transform = "translate(1050px,0px)";
+                }
+                function onProgressgif(){
+                    const PL = document.querySelector(".progressgif");
+                    PL.style.transform = "translate(650px,0px)";
+                }
+            }
+            
+        </script>
+    </head>
+    <body onload="init()">
+
+        <img class="flowerCoin" id="flower1" src="img/flower.png" alt="花朵">
+        <img class="flowerCoin" id="flower2" src="img/flower.png" alt="花朵">
+        <img class="flowerCoin" id="flower3" src="img/flower.png" alt="花朵">
+        <img class="flowerCoin" id="flower4" src="img/flower.png" alt="花朵">
+        <img class="flowerCoin" id="flower5" src="img/flower.png" alt="花朵">
+        <img class="flowerCoin" id="flower6" src="img/flower.png" alt="花朵">
+
+        <div class="progressall">
+            <img class="progressgif" src="img/jiazai.gif" alt="动图">
+            <div class="progressLine"onclick="onProgress()">
+                <div class="proLine" ></div>
+            </div>
+        </div>
+        
+    </body>
+</html>

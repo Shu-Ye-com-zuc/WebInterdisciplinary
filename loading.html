@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Loading</title>
+        <meta charset="utf-8"/>
+		
+		<link rel="stylesheet" href="css/main.css" type="text/css"/>
+        <style type="text/css">
+            .progressgif{
+                transition: transform 5s linear 1s;
+            }
+            .progressLine{
+                height: 40px;
+                width:1000px;
+                overflow: hidden;
+                border-radius: 20px;
+                background-color: rgb(159, 161, 159);
+                border: 5px solid rgb(97, 83, 83);
+            }
+            .proLine{
+                height: 40px;
+                width:1100px;
+                background-color: green;
+                border-radius: 20px;
+                position: relative;
+                Left:-1100px;
+                transition: transform 5s linear 1s;
+            }
+
+            @keyframes flowerRotate {
+                0% { opacity: 0.8; transform: translate(0,0) scale(0.9) rotateZ(0deg); }
+                50% { opacity: 1; transform: translate(0,0) scale(1) rotateZ(180deg); }
+                100% { opacity: 0.8; transform: translate(0,0) scale(0.9) rotateZ(360deg); }
+            }
+        </style>
+        <script type="text/javascript">
+
+            function onProgress(){
+                onProgressLine();
+                onProgressgif();
+
+
+                function onProgressLine(){
+                    const PL = document.querySelector(".proLine");
+                    PL.style.transform = "translate(1050px,0px)";
+                }
+                function onProgressgif(){
+                    const PL = document.querySelector(".progressgif");
+                    PL.style.transform = "translate(650px,0px)";
+                }
+            }
+        </script>
+    </head>
+    <body >
+
+        <div class="progressall">
+            <img class="progressgif" src="img/jiazai.gif" alt="动图">
+            <div class="progressLine"onclick="onProgress()">
+                <div class="proLine" ></div>
+            </div>
+        </div>
+        
+    </body>
+</html>
