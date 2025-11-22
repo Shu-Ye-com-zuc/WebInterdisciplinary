@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>第9页</title>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+            html,body{
+                width: 100%;
+                height: 100%;
+                overflow:hidden;
+                margin:0 auto;
+                position:relative;
+            }
+            body{
+                background-image: url("img/ModelPageImages/PageOneBackground.png");
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .BookDivDiv{
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                transform:scale(1.55);
+
+            }
+            .BookDiv{
+                width:1000px;
+                height:563px;
+                overflow: hidden;
+                
+                /* transition: all 3s linear 0s; */
+                transform:translate(-50px,0);
+                position: absolute;
+                display: flex;                /* 子元素横向排列 */
+                align-items: center;
+            }
+            .BookDivson{
+                display: inline-block;
+                flex: 0 0 1000px; /* width:1000px; */
+                height:562.5px;
+                position: relative;
+                transition: all 3s linear 0s;
+            }
+            .overBook{
+                 width: 1000px;
+
+                height: auto;
+                position: absolute;
+                margin: 0 auto; /* 居中显示 */
+                z-index: -1;
+            }
+            .leftBook{
+                position: absolute;
+
+                width: 130px;
+                height: 665px;
+                /* transform:translate(-70px,8px); */
+                z-index: 1;
+                transition: all 3s linear 0s;
+                transform:translate(-590px,8px);
+            }
+            .rightBook{
+                
+                position: absolute;
+                width: 270px;
+                /* width:260px; */
+                z-index: 1;
+                transform:translate(552px,0);
+            }
+
+            .pageEightDaDiv{
+                width:1000px;
+                height:562.5px;
+                display: flex;
+                align-items: center;
+            }
+            .pageEightDiv1{
+                width: 63%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+            }
+            .pageEightDiv2{
+                background-color: rgba(218, 218, 218, 0.397);
+                width: 37%;
+                height: 96%;
+                border-left: 1px solid black;
+            }
+            .characterPhoto{
+                width:400px;
+                height:auto;
+                position: absolute;
+                
+                transform:translate(-50%,20px);
+            }
+            .characterPhotoTopDiv{
+                width: 100%;
+                height: 53%;
+                display: flex;
+                justify-content: center;
+            }
+            .characterPhotoBottomDiv{
+                width: 100%;
+                height: 47%;
+                display: flex;
+                justify-content: center;
+            }
+            .paintBox{
+                width: 90%;
+                height:67%;
+                display: flex;
+                justify-content: center;
+
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+            .paintColor{
+                flex-shrink: 0; 
+
+                width: 70px;
+                height: 70px;
+                /* aspect-ratio: 1/1; */
+                border-radius: 50%;
+                border: 1px solid #000000;
+                border-radius: 50%;
+                overflow: hidden;
+                cursor: pointer;
+            }
+            .paintColor:hover{
+                transform:scale(1.1);
+
+                filter: drop-shadow(0 0 4px rgb(10, 255, 10));
+            }
+
+            .nextImage{
+                left: 900px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+            }
+            .lastImage{
+                left: 50px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+            }
+            
+
+        </style>
+        <script type="text/javascript">
+
+            function selectColor(e){
+                let a =e.currentTarget.dataset.index;
+                const CPpicture = document.getElementById(`CP_${a}`);
+                CPpicture.style.display="block";
+            }
+
+
+
+            function changePage(i){
+                if(i=="1"){
+                    window.location.replace("");
+                }else if(i=="-1"){
+                    window.location.replace("");
+                }
+            }
+        </script>
+    </head>
+    <body >
+        <!-- <a href="PageTwo.html"><img class="PageOneCoin" src="img/PageOneIcon.png" alt="牡丹亭" /></a> -->
+         <div  class="BookDivDiv">
+            <img  class="leftBook" src="img/ModelPageImages/LeftFrame.png" />
+
+            <div class="BookDiv" >
+                <div  class="BookDivson">
+                    <img  class="overBook" src="img/ModelPageImages/downBG.png"  /> 
+                    
+                    <div class="pageEightDaDiv">
+                        <div class="pageEightDiv1">
+                            <div class="characterPhotoMideunDiv">
+                                <img class="characterPhoto" src="img/PageEightImages/PhotoCon.png" />
+                                <img class="characterPhoto" id="CP_1"src="img/PageEightImages/characterPhoto_1.png"  style="display: none;"/>
+                                <img class="characterPhoto" id="CP_2" src="img/PageEightImages/characterPhoto_2.png" style="display: none;"/>
+                                <img class="characterPhoto" id="CP_3" src="img/PageEightImages/characterPhoto_3.png" style="display: none;"/>
+                                <img class="characterPhoto" id="CP_4" src="img/PageEightImages/characterPhoto_4.png" style="display: none;"/>
+                                <img class="characterPhoto" id="CP_5" src="img/PageEightImages/characterPhoto_5.png" style="display: none;"/>
+                                <img class="characterPhoto" id="CP_6" src="img/PageEightImages/characterPhoto_6.png" style="display: none;"/>
+                                
+                            </div>
+                        </div>
+
+                        <div class="pageEightDiv2">
+                            <div class="characterPhotoTopDiv">
+                                <img class="characterPhoto" src="img/PageEightImages/PhotoMan.png" style="width: 17% ;transform:translate(0,20px)"/>
+                            </div>
+                            <div class="characterPhotoBottomDiv">
+                                <div class="paintBox">
+                                    <div class="paintColor" data-index="1" style="background-color: #DADAB2;"  onclick="selectColor(event)"></div>
+                                    <div class="paintColor" data-index="2" style="background-color: #FFF3CC;"  onclick="selectColor(event)"></div>
+                                    <div class="paintColor" data-index="3" style="background-color: #FFE5C4;"  onclick="selectColor(event)"></div>
+                                    <div class="paintColor" data-index="4" style="background-color: #EC9778;"  onclick="selectColor(event)"></div>
+                                    <div class="paintColor" data-index="5" style="background-color: #9CCAB6;"  onclick="selectColor(event)"></div>
+                                    <div class="paintColor" data-index="6" style="background-color: #53493A;"  onclick="selectColor(event)"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                    <img class="nextImage" src="img/ModelPageImages/RightBT.png"  onclick="changePage(1)"/>
+                    <img class="lastImage" src="img/ModelPageImages/LeftBT.png"  onclick="changePage(-1)"/>
+                </div>
+                
+            </div>
+
+            <img class="rightBook" src="img/ModelPageImages/RightFrame.png" />
+         </div>
+        
+    </body>
+</html>

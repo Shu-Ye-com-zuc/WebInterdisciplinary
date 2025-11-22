@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>第七页</title>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+            html,body{
+                width: 100%;
+                height: 100%;
+                overflow:hidden;
+                margin:0 auto;
+                position:relative;
+            }
+            body{
+                background-image: url("img/ModelPageImages/PageOneBackground.png");
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .BookDivDiv{
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                transform:scale(1.55);
+
+            }
+            .BookDiv{
+                width:1000px;
+                height:563px;
+                overflow: hidden;
+                
+                /* transition: all 3s linear 0s; */
+                transform:translate(-50px,0);
+                position: absolute;
+                display: flex;                /* 子元素横向排列 */
+                align-items: center;
+            }
+            .BookDivson{
+                display: inline-block;
+                flex: 0 0 1000px; /* width:1000px; */
+                height:562.5px;
+                position: relative;
+                transition: all 3s linear 0s;
+            }
+            .overBook{
+                 width: 1000px;
+
+                height: auto;
+                position: relative;
+                margin: 0 auto; /* 居中显示 */
+            }
+            .leftBook{
+                position: absolute;
+
+                width: 130px;
+                height: 665px;
+                /* transform:translate(-70px,8px); */
+                z-index: 1;
+                transition: all 3s linear 0s;
+                transform:translate(-590px,8px);
+            }
+            .rightBook{
+                
+                position: absolute;
+                width: 270px;
+                /* width:260px; */
+                z-index: 1;
+                transform:translate(552px,0);
+            }
+            .nextImage{
+                left: 900px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+            }
+            .lastImage{
+                left: 50px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+            }
+
+            .aPuzzle{
+                width:500px;
+                height: 250px;
+                position: absolute;
+                display: flex;
+                left:260px;
+                top: 150px;
+                flex-wrap: wrap;
+                border:2px solid black ;
+            }
+            .aPuzzleImage{
+                width:500px;
+                height: 250px;
+                position: absolute;
+                left:260px;
+                top: 150px;
+
+                transition: all 3s linear 0.5s;
+            }
+            .aPuzzleSon{
+                width:25%;
+                height:50%;
+                background-color: rgba(104, 93, 93, 0.253);
+                border: 2px solid black;
+                box-sizing: border-box;/*向内延伸的边框*/
+                /* pointer-events: none; */
+            }
+            .puzzleImageSon{
+                width:25%;
+                height:50%;
+                position: absolute;
+                cursor: pointer;
+
+            }
+        </style>
+        <script type="text/javascript">
+            //禁止手机滚动
+            document.addEventListener('touchmove', function(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+
+
+            function changePage(i){
+                if(i=="1"){
+                    window.location.replace("PageSeven.html");
+                }else if(i=="-1"){
+                    window.location.replace("PageFive_3.html");
+                }
+            }
+        </script>
+    </head>
+    <body >
+        <!-- <a href="PageTwo.html"><img class="PageOneCoin" src="img/PageOneIcon.png" alt="牡丹亭" /></a> -->
+         <div  class="BookDivDiv">
+            <img  class="leftBook" src="img/ModelPageImages/LeftFrame.png" />
+
+            <div class="BookDiv" >
+                <div  class="BookDivson">
+                    <img  class="overBook" src="img/ModelPageImages/downBG.png"  /> 
+                        <img class="aPuzzleImage" src="img/PuzzleImage/puzzleDownImage.jpg"/>
+                        <div class="aPuzzle">
+                            <div class="aPuzzleSon" data-index="1"></div>
+                            <div class="aPuzzleSon" data-index="2"></div>
+                            <div class="aPuzzleSon" data-index="3"></div>
+                            <div class="aPuzzleSon" data-index="4"></div>
+                            <div class="aPuzzleSon" data-index="5"></div>
+                            <div class="aPuzzleSon" data-index="6"></div>
+                            <div class="aPuzzleSon" data-index="7"></div>
+                            <div class="aPuzzleSon" data-index="8"></div>
+                            <img class="puzzleImageSon"  data-index="1" src="img/PuzzleImage/puzzleImageSon_1.png" style="left: -150px;top: 10px;"/>
+                            <img class="puzzleImageSon"  data-index="2" src="img/PuzzleImage/puzzleImageSon_2.png" style="left: -250px;top: -120px;"/>
+                            <img class="puzzleImageSon"  data-index="3" src="img/PuzzleImage/puzzleImageSon_3.png" style="left: -250px;top: 130px;"/>
+                            <img class="puzzleImageSon"  data-index="4" src="img/PuzzleImage/puzzleImageSon_4.png" style="left: -150px;top: 250px;"/>
+                            <img class="puzzleImageSon"  data-index="5" src="img/PuzzleImage/puzzleImageSon_5.png" style="left: 510px;top: 10px;"/>
+                            <img class="puzzleImageSon"  data-index="6" src="img/PuzzleImage/puzzleImageSon_6.png" style="left: 610px;top: -120px;"/>
+                            <img class="puzzleImageSon"  data-index="7" src="img/PuzzleImage/puzzleImageSon_7.png" style="left: 610px;top: 130px;"/>
+                            <img class="puzzleImageSon"  data-index="8" src="img/PuzzleImage/puzzleImageSon_8.png" style="left: 510px;top: 250px;"/>
+                        </div>
+
+                    <img class="nextImage" src="img/ModelPageImages/RightBT.png"  onclick="changePage(1)"/>
+                    <img class="lastImage" src="img/ModelPageImages/LeftBT.png"   onclick="changePage(-1)"/>
+                </div>
+                
+            </div>
+
+            <img class="rightBook" src="img/ModelPageImages/RightFrame.png" />
+         </div>
+        
+        <script>
+            const puzzleImageSon = document.getElementsByClassName("puzzleImageSon");
+            let cardIsDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;//初始X
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+            let placedCount = 0; 
+
+            let TheConstPuImageSon;
+            //防止默认拖拽
+            document.addEventListener('dragstart', (e) => {
+                // 判断目标是否是需要处理的 div（带 no-default-drag 类）
+                if (e.target.classList.contains('puzzleImageSon')) {
+                e.preventDefault(); // 取消默认拖拽行为
+                e.stopPropagation();//取消事件扩散
+                }
+            });
+
+            for(let i=0;i<puzzleImageSon.length;i++){
+                // puzzleImageSon[i].addEventListener('mousedown', cardDragStart(puzzleImageSon[i]));
+                const a = puzzleImageSon[i];
+                a.addEventListener('mousedown', function (e) {
+                    cardDragStart(a,e);
+                });
+                // puzzleImageSon[i].addEventListener('mousedown', cardDragStart);
+
+            }
+            document.addEventListener('mousemove', cardDrag);
+            document.addEventListener('mouseup', cardDragEnd);
+
+
+
+             function cardDragStart(ThePuImageSon,e) {//传入div对象
+            // 获取初始位置
+                cardIsDragging = true;
+
+                TheConstPuImageSon=ThePuImageSon;
+
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+
+                setTranslate(currentX, currentY, ThePuImageSon);
+
+            }
+
+            function setTranslate(xPos, yPos, el) {//改变位置
+                el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+            }
+
+            function getTranslateY(element) {
+                // 1. 获取元素计算后的 transform 样式
+                const transform = window.getComputedStyle(element).getPropertyValue('transform');
+                
+                // 2. 如果没有 transform 变换（值为 'none'），返回 0
+                if (transform === 'none') {
+                    return 0;
+                }
+
+                // 3. 解析矩阵（支持 2D matrix 和 3D matrix3d）
+                const matrix = new DOMMatrix(transform); // 用 DOMMatrix 解析矩阵
+
+                // 4. 2D 矩阵的 y 偏移在 matrix.f；3D 矩阵在 matrix.m42（等价于索引 13）
+                return matrix.is2D ? matrix.f : matrix.m42;
+            }
+
+            function cardDrag(e){
+                if (cardIsDragging) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    currentX = (e.clientX - initialX) / 1.55;;
+                    currentY = (e.clientY - initialY) / 1.55;;
+                    xOffset = currentX;
+                    yOffset = currentY;
+                    
+                    // 设置元素位置
+                    setTranslate(currentX, currentY,TheConstPuImageSon);
+
+                    // const garbageCan = document.getElementById("garbageCan");
+                    // checkDropZone(e,garbageCan);
+                }
+            }
+            function cardDragEnd(e) {
+                //松开鼠标时结束拖拽
+                if(cardIsDragging == true){
+                    cardIsDragging = false;
+                    const aax = e.pageX;
+                    const aay = e.pageY;
+
+                    // 获取下层元素（假设它在顶层下方）
+                    const originalDisplay = TheConstPuImageSon.style.display;
+                    TheConstPuImageSon.style.display = 'none';
+
+                    const target = document.elementFromPoint(aax, aay);
+
+                    TheConstPuImageSon.style.display = originalDisplay;
+                    // 如果命中底层元素，手动触发 hover 效果
+                    if (target.className === "aPuzzleSon") {
+                        if(target.dataset.index==TheConstPuImageSon.dataset.index){
+                            target.style.backgroundColor = 'transparent';
+                            target.style.border = 'none';
+                            placedCount++;
+                            TheConstPuImageSon.remove();
+                            checkComplete();
+                        }
+
+                    } else {
+
+                    }
+
+                    TheConstPuImageSon.style.transform = ''; 
+                    // 重置偏移量，避免下次拖拽受影响
+                    xOffset = 0;
+                    yOffset = 0;
+
+                    
+                } 
+            }
+
+
+
+            // 检查是否全部归位
+            function checkComplete() {
+                if (placedCount === 8) {
+                    setTimeout(() => {
+                        const a = document.getElementsByClassName('aPuzzle');
+                        const b = document.getElementsByClassName('aPuzzleImage');
+                        a[0].remove();
+                        // completeTip.style.display = 'block';
+                        b[0].style.left="21px";
+                        b[0].style.top="12px";
+                        b[0].style.width="976px";
+                        b[0].style.height="539px";
+                    }, 500);
+                }
+            }
+
+
+        </script>
+    </body>
+</html>
