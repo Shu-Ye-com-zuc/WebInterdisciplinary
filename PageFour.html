@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>第二页</title>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+            html,body{
+                width: 100%;
+                height: 100%;
+                overflow:hidden;
+                margin:0 auto;
+                position:relative;
+            }
+            body{
+                background-image: url("img/ModelPageImages/PageOneBackground.png");
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .BookDivDiv{
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                transform:scale(1.55);
+
+            }
+            .BookDiv{
+                width:1000px;
+                height:563px;
+                overflow: hidden;
+                
+                transition: all 3s linear 0s;
+                transform:translate(-50px,0);
+                position: absolute;
+                display: flex;                /* 子元素横向排列 */
+                align-items: center;
+            }
+            .BookDivson{
+                display: inline-block;
+                flex: 0 0 1000px; /* width:1000px; */
+                height:562.5px;
+                position: relative;
+                transition: all 3s linear 0s;
+            }
+            .overBook{
+                 width: 1000px;
+
+                height: auto;
+                position: absolute;
+                margin: 0 auto; /* 居中显示 */
+            }
+            .leftBook{
+                position: absolute;
+
+                width: 130px;
+                height: 665px;
+                /* transform:translate(-70px,8px); */
+                z-index: 1;
+                transition: all 3s linear 0s;
+                transform:translate(-590px,8px);
+            }
+            .rightBook{
+                
+                position: absolute;
+                width: 270px;
+                /* width:260px; */
+                z-index: 1;
+                transform:translate(552px,0);
+            }
+
+            .textDiv{
+                width:500px;
+                height:562.5px;
+                /* overflow: hidden; */
+                /* transition: all 3s linear 0s;
+                transform:translate(-50px,0); */
+                top:75px;
+                left:300px;
+                position: absolute;
+                z-index: 2;
+            }
+            #textTitle{
+                font-family: "STXingkai", "华文行楷", serif;
+                font-size: 30pt;
+                line-height: 33pt;
+                text-align: center;
+                z-index: 2;
+            }
+
+            .instrumentDiv{
+                width: 250px;
+                height: auto;
+                position: absolute;
+                z-index: 2;
+                filter: drop-shadow(0 0 4px rgba(224, 174, 10, 0.8));
+
+                transition: filter 0.3s ease;
+            }
+            .instrumentDiv:hover{
+                transform: translate(0,-10px);
+
+                filter: drop-shadow(0 0 12px rgb(255, 196, 2));
+                cursor: pointer;
+            }
+            .musicImage{
+                position: absolute;
+                width: 100px;
+                left: 800px;
+                top: 25px;
+                cursor: pointer;
+            }
+            .nextImage{
+                left: 900px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+            }
+            .lastImage{
+                left: 50px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+            }
+            .modal-overlay {
+                display: none; /* 默认隐藏 */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
+                z-index: 1000; /* 确保在最上层 */
+                justify-content: center;
+                align-items: center;
+            }
+
+                /* 弹框内容框 */
+            .modal-content {
+                background-image:url("img/ModelPageImages/downBG.png");
+                background-size:cover;
+                padding: 30px;
+                border-radius: 8px;
+                width: 1200px; /* 你可以调整宽度 */
+                height: 675.6px;
+                max-width: 90%;
+                position: relative;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            }
+
+
+            .modal-content h2 {
+                margin-top: 0;
+            }
+
+                
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 100px;
+                cursor: pointer;
+                color: #aaa;
+                z-index: 10; /* 确保标题在内容上方 */
+            }
+
+            .close-btn:hover {
+                color: #000;
+            }
+
+            .modal-content p {
+                line-height: 1.6;
+            }
+            .popupBox{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                position: relative;
+
+            }
+            .popupLeftFrame{
+                display: flex;
+                width: 33.3%;
+                height: 100%;
+
+                justify-content: center;
+                align-items: center;
+            }
+            .popupRightFrame{
+                display: flex;
+                width: 66.6%;
+                height: 100%;
+                /* justify-content: center; */
+                flex-direction: column;
+            }
+            .popupBoxImage{
+                width:360px;
+
+            }
+            .popupBoxTitle{
+     
+                font-family: "STXingkai", "华文行楷", serif;
+                font-size: 30pt;
+                line-height: 33pt;
+                text-align: center;
+                /* writing-mode: vertical-rl; */
+            }
+            .popupBoxText{
+                text-align: center;
+                font-family: "STKaiti", "华文楷体", serif; /* 兼容不同浏览器 */
+                font-size: 20pt;
+                line-height: 22pt;
+            }
+            .popupBoxText p{
+                display: inline-block;    /* 让 <p> 能被 text-align 控制 */
+                max-width: 600px;         /* 限制宽度，更美观 */
+                text-align: left;         /* 段落内文字左对齐（推荐） */
+                margin: 1px 0;
+            }
+            .littleName{
+                height: 50px;
+                width: 30px;
+                background-color: rgba(175, 129, 28, 0.432);
+                border: 1.5px solid rgb(122, 65, 0);
+                border-radius: 7px;
+                position: absolute;
+
+                display: flex;
+                align-content: center;
+                align-items: center;     /* 垂直居中 */
+                justify-content: center; 
+                font-family: "STXingkai", "华文行楷", serif;
+                font-size: 14pt;
+                line-height: 22pt;
+                writing-mode: vertical-rl;
+            }
+
+        </style>
+        <script type="text/javascript">
+
+
+            function changePage(i){
+                if(i=="1"){
+                    window.location.replace("PageFive.html");
+                }else if(i=="-1"){
+                    window.location.replace("PageTwo.html");
+                }
+            }
+        </script>
+    </head>
+    <body >
+        <!-- <a href="PageTwo.html"><img class="PageOneCoin" src="img/PageOneIcon.png" alt="牡丹亭" /></a> -->
+         <div  class="BookDivDiv">
+            <img  class="leftBook" src="img/ModelPageImages/LeftFrame.png" />
+            <div class="BookDiv" >
+                <div  class="BookDivson">
+                    <div class="textDiv">
+                        <div id="textTitle">
+                            “寻梦径”之昆曲乐器介绍
+                        </div>
+                    </div>
+
+                    <img  class="overBook" src="img/pageFourImages/SdownBook.png"  /> 
+                    <img  class="instrumentDiv" src="img/pageFourImages/instrument_1.png" style="left:50px;top:120px; " onclick="openPopup(0)" /> 
+                    <div class = "littleName" style="left:140px;top:400px; ">
+                        笛
+                    </div>
+                    <img  class="instrumentDiv" src="img/pageFourImages/instrument_2.png" style="left:195px;top:120px; " onclick="openPopup(1)"/> 
+                    <div class = "littleName" style="left:335px;top:400px;">
+                        双清
+                    </div>
+                    <img  class="instrumentDiv" src="img/pageFourImages/instrument_3.png" style="left:400px;top:120px; " onclick="openPopup(2)"/> 
+                    <div class = "littleName"  style="left:570px;top:400px; ">
+                        琵琶
+                    </div>
+                    <img  class="instrumentDiv" src="img/pageFourImages/instrument_4.png" style="left:570px;top:120px; " onclick="openPopup(3)"/> 
+                    <div class = "littleName"  style="left:760px;top:400px; ">
+                       笙 
+                    </div>
+                    <img  class="instrumentDiv" src="img/pageFourImages/instrument_5.png" style="left:720px;top:120px; " onclick="openPopup(4)"/> 
+                    <div class = "littleName"  style="left:940px;top:400px; ">
+                        大阮
+                    </div>
+
+                    <img  class="musicImage" src="img/ModelPageImages/musicBT.png" onclick="" />
+
+                    <img class="nextImage" src="img/ModelPageImages/RightBT.png"  onclick="changePage(1)"/>
+                    <img class="lastImage" src="img/ModelPageImages/LeftBT.png"  onclick="changePage(-1)"/>
+                </div>
+                
+
+            </div>
+            <img class="rightBook" src="img/ModelPageImages/RightFrame.png" />
+         </div>
+         
+         <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+            <div class="modal-content">
+                <!-- 关闭按钮 × -->
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+
+                <!-- 弹框内容 -->
+                <div class="popupBox">
+
+                    <div class="popupLeftFrame">
+
+                        <img class ="popupBoxImage" src="img/pageFourImages/instrument_1.png"/>
+                    </div>
+
+                    <div class="popupRightFrame">
+                        <br><br><br><br>
+                        <text class="popupBoxTitle">
+                            笛——一曲笛声绕云霓
+                            <!-- <p  class="popupBoxTitleP">笛——一曲笛声绕云霓</p> -->
+                        </text>
+                        <br><br><br>
+                        <text class="popupBoxText">
+                            <p class="popupTextP" style="text-indent: 2em;">竹笛是昆曲乐队的“灵魂”，其音色清脆明亮圆润悠远，宛如一条丝线贯穿始终，引领着整个乐队和演员的唱腔。演员的“腔口”和“气口”都与笛音的起伏紧密相连,所谓“笛师吹笛，曲随笛走”。</p>
+                            <p class="popupTextP" style="text-indent: 2em;">昆曲每个曲牌都有固定的旋律。笛师需要用笛子为演员“托腔”，即紧密贴合其唱腔，使音乐与演唱水乳交融。一出戏的文戏部分，几乎都由竹笛主导。</p>
+                        </text>
+                    </div >
+                </div>
+            </div>
+        </div>
+        <script>
+
+            const modalOverlay = document.getElementById('modalOverlay');
+            const popupImage = document.getElementsByClassName('popupBoxImage');
+            const popupBoxTitle = document.getElementsByClassName('popupBoxTitle');
+            const popupTextP = document.getElementsByClassName('popupTextP');//两个
+            const textTitleArr = [
+                "笛——一曲笛声绕云霓",
+                "双清——清越雅致的色彩点缀",
+                "琵琶——珠落击盘的节奏骨干",
+                "笙——温和醇厚的“音乐黏合剂”",
+                "中阮——醇和深沉的中音担当"
+            ];
+            const textPArr1 = [
+                "竹笛是昆曲乐队的“灵魂”，其音色清脆明亮圆润悠远，宛如一条丝线贯穿始终，引领着整个乐队和演员的唱腔。演员的“腔口”和“气口”都与笛音的起伏紧密相连,所谓“笛师吹笛，曲随笛走”。",
+                "双清是一种较为古老的乐器，形似琵琶但琴杆更长，有两根弦，音色清越、空灵，略带金属声，非常有特色。它在现代昆曲乐队中使用不如其他乐器频繁，但一旦出现，便极具古风雅韵。",
+                "琵琶音色清澈，颗粒感强，演奏技巧丰富，有“大珠小珠落玉盘”之美。在昆曲乐队中，它是重要的节奏和旋律乐器，尤其在需要强调节奏感和力度时作用关键。",
+                "笙的音色温和、醇厚，如春风拂面。在乐队中，它扮演着“黏合剂”与“铺底”的角色。其独特的和声效果能填充整个乐队的音响空间，使竹笛的旋律听起来更加丰满、圆融，不显单薄。",
+                "中阮的音色圆润、醇和，略带鼻音，非常含蓄内敛。它在乐队中主要担任中声部，如同合唱团中的中音，声音并不突出，但一旦缺少，整体音响就会显得空洞。"
+            ];
+            const textPArr2 = [
+                "昆曲每个曲牌都有固定的旋律。笛师需要用笛子为演员“托腔”，即紧密贴合其唱腔，使音乐与演唱水乳交融。一出戏的文戏部分，几乎都由竹笛主导。",
+                "双清常作为色彩性乐器使用，在特定的曲牌或场景中，用其独特的音色点缀其间，营造出一种清雅、高古或略带凄清的意境,为音乐增添一抹别样的色彩。",
+                "琵琶一般是演奏旋律的骨干音，用“轮指”、“弹挑”等技法打出清晰的节奏点，与其他乐器配合，是稳定音乐的骨架。在演奏曲牌的前奏或间奏时，琵琶的华彩段也能增添音乐的色彩和表现力。",
+                "笙通常与笛子配合，吹奏相同的旋律，以其绵长、持续的音响特质，为音乐提供一个稳定的和声背景，中和笛声的尖锐，使整体音响更加和谐、悦耳，有庄重典雅之感。",
+                "中阮的演奏技法以弹、挑、轮为主，其温和的音色能很好地填充高音乐器(如笛、琵琶)与低音乐器之间的频率空白，使乐队的和声更加厚实、饱满，起到承上启下的作用，让音乐听起来更富层次感和立体感。"
+            ];
+            const imageSrcArr = [
+                "img/pageFourImages/instrument_1.png",
+                "img/pageFourImages/instrument_2.png",
+                "img/pageFourImages/instrument_3.png",
+                "img/pageFourImages/instrument_4.png",
+                "img/pageFourImages/instrument_5.png"
+            ];
+
+            function openPopup(i) {
+                // console.log(textTitleArr[i]);
+                popupBoxTitle[0].innerHTML=textTitleArr[i];
+                popupTextP[0].innerHTML=textPArr1[i];
+                popupTextP[1].innerHTML=textPArr2[i];
+                popupImage[0].src = imageSrcArr[i];
+                modalOverlay.style.display = 'flex'; 
+                
+            }
+
+            function closePopup() {
+                modalOverlay.style.display = 'none';
+            }
+
+            function closeModalOnOverlay(event) {
+                if (event.target === modalOverlay) {
+                    closePopup();
+                }
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>首页</title>
+        <title>第一页</title>
         <meta charset="utf-8"/>
-		
         <style type="text/css">
-			html,body{
-			    width: 100%;
-			    height: 100%;
-			    overflow:hidden;
-			    margin:0 auto;
-			    position:relative;
-			    }
-			body{
-			    background-image: url("./img/PageOneBackground.png");
-			    display: flex;
-			    justify-content: center;
-			    align-items: center;
-				background-repeat: no-repeat;
-			    background-size: cover;
-			}
+            html,body{
+                width: 100%;
+                height: 100%;
+                overflow:hidden;
+                margin:0 auto;
+                position:relative;
+            }
+            body{
+                background-image: url("img/ModelPageImages/PageOneBackground.png");
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
             .PageOneCoin{
                 width: 1000px;
                 height: 800px;
@@ -46,64 +45,176 @@
                 overflow: hidden;
                 transition: all 3s linear 0s;
             }
+            .BookDivson{
+                width:1000px;
+                height:562.5px;
+                transition: all 3s linear 0s;
+            }
             .overBook{
                  width: 1000px;
 
                 height: auto;
                 position: relative;
                 margin: 0 auto; /* 居中显示 */
+
+            }
+            .textDiv{
+                width:500px;
+                height:562.5px;
+                /* overflow: hidden; */
+                /* transition: all 3s linear 0s;
+                transform:translate(-50px,0); */
+                top:75px;
+                left:300px;
+                position: absolute;
+            }
+            .char {
+                opacity: 0;             /* 初始不可见 */
+                animation: fadeIn 0.3s ease-in-out forwards;
+            }
+            #textTitle{
+                font-family: "STXingkai", "华文行楷", serif;
+                font-size: 30pt;
+                line-height: 33pt;
+                text-align: center;
+            }
+            #text1{
+                font-family: "STKaiti", "华文楷体", serif; /* 兼容不同浏览器 */
+                font-size: 15pt;
+                line-height: 22pt; 
+            }
+            #text2{
+                font-family: "STKaiti", "华文楷体", serif; /* 兼容不同浏览器 */
+                font-size: 15pt; 
+                line-height: 22pt; 
             }
             .leftBook{
                 position: absolute;
 
-                width: 190px;
+                width: 130px;
                 height: 665px;
-                transform:translate(-70px,8px);
+                transform:translate(-90px,8px);
                 z-index: 1;
                 transition: all 3s linear 0s;
             }
-            .downBook{
+            
+            .rightBook{
                 
                 position: absolute;
-                width: 1250px;
+                width: 270px;
                 /* width:260px; */
                 z-index: 1;
                 
                 transition: all 3s linear 0s;
             }
+            .nextImage{
+                position: absolute;
+                left: 900px;
+                bottom: 25px;
+                cursor: pointer;
+            }
+            
 
             @keyframes Addscale {
                 100% { transform:scale(1.55); }
             }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px); /* 可选：从下方稍微上来一点 */
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         </style>
         <script type="text/javascript">
+            
+
+            function konghs(){};
             function bookpaly(){
+                textETitle.innerHTML = textTitle;
+                document.querySelector(".rightBook").onclick=konghs;
                 let daBook = document.querySelector(".BookDiv");
                 daBook.style.transform="translate(-50px,0)";
                 daBook.style.width="1000px";
                 
 
                 let leftBook =  document.querySelector(".leftBook");
-                leftBook.style.transform="translate(-560px,8px)";
-                let downBook =  document.querySelector(".downBook");
-                downBook.style.transform="translate(562px,0)";
+                leftBook.style.transform="translate(-590px,8px)";
+                let downBook =  document.querySelector(".rightBook");
+                downBook.style.transform="translate(552px,0)";
                 document.querySelector('.BookDivDiv').classList.add('addXY');
                 setTimeout(() => {
-                    
-                }, 3300);
+                    [...text1].forEach((char, index) => {
+                        const span = document.createElement('span');
+                        span.textContent = char === ' ' ? '\u00A0' : char; // 保留空格
+                        span.className = 'char';
+                        span.style.animationDelay = `${index * 0.03}s`; // 每个字延后 0.1 秒
+                        textE1.appendChild(span);
+                    });
+                    const num=[...text1].length;
+                    [...text2].forEach((char1, index1) => {
+                        const span1 = document.createElement('span');
+                        span1.textContent = char1 === ' ' ? '\u00A0' : char1; // 保留空格
+                        span1.className = 'char';
+                        span1.style.animationDelay = `${(index1+num-20) * 0.03}s`; // 每个字延后 0.1 秒
+                        textE2.appendChild(span1);
+                    });
+
+                }, 2800);
+            }
+
+            function nextPage(){
+                window.location.replace("PageFour.html");
             }
         </script>
     </head>
     <body >
-        <!-- <a href="PageTwo.html"><img class="PageOneCoin" src="Images/PageOneIcon.png" alt="牡丹亭" /></a> -->
+        <!-- <a href="PageTwo.html"><img class="PageOneCoin" src="img/PageOneIcon.png" alt="牡丹亭" /></a> -->
          <div  class="BookDivDiv">
-            <img  class="leftBook" src="img/pageOneImages/LeftFrsme.png" />
+            <img  class="leftBook" src="img/ModelPageImages/LeftFrame.png" />
             <div class="BookDiv" >
-                <img  class="overBook" src="img/pageOneImages/123.png" />
+                <div class="BookDivson">
 
+                    <img  class="overBook" src="img/pageOneImages/downBook.png" />
+                    <div class="textDiv">
+                        <div id="textTitle">
+                            “寻梦径”之背景介绍
+                        </div>
+                        <br/>
+                        <br/>
+                        <div id="text1">
+            昆曲《牡丹亭》是明代剧作家汤显祖的巅峰之作，是中式古典美学的集大成者。寻梦径以其为蓝本，将其中的内容故事数字化、游戏化，通过互动性语言与数字化技术，将其设计成网页游戏，贴合年轻人的主题习惯，吸引大众关注昆曲《牡丹亭》。
+                        </div>
+                        <div id="text2">
+            此交互设计内容为通过互动方式讲述昆曲《牡丹亭》主要故事情节及其中的昆曲小知识，让用户能够在参与此交互体验时了解昆曲《牡丹亭》主要故事情节并产生对昆曲《牡丹亭》的兴趣，让其愿意进一步学习昆曲《牡丹亭》的相关详细内容，做到边玩边学
+                        </div>
+                    </div>
+                    <img  class="nextImage" src="img/ModelPageImages/RightBT.png" onclick="nextPage()" />
+
+
+                </div>
+                
             </div>
-            <img class="downBook" src="img/oneIcon.png" onclick="bookpaly()"/>
+            <img class="rightBook" src="img/ModelPageImages/RightFrame.png" onclick="bookpaly()"/>
          </div>
         
+        
+        <script type="text/javascript">
+            const textE1 = document.getElementById('text1');
+            const text1 = textE1.textContent;
+            const textE2 = document.getElementById('text2');
+            const text2 = textE2.textContent;
+            textE1.innerHTML = '';
+            textE2.innerHTML = '';
+            const textETitle = document.getElementById('textTitle');
+            const textTitle = textETitle.textContent;
+            textETitle.innerHTML = '';
+            
+            // 把每个字符包裹进 span，并添加延迟动画
+            
+        </script>
     </body>
 </html>

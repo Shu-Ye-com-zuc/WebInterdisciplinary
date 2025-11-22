@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>第4页</title>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+            html,body{
+                width: 100%;
+                height: 100%;
+                overflow:hidden;
+                margin:0 auto;
+                position:relative;
+            }
+            body{
+                background-image: url("img/ModelPageImages/PageOneBackground.png");
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .BookDivDiv{
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                transform:scale(1.55);
+
+            }
+            .BookDiv{
+                width:1000px;
+                height:563px;
+                overflow: hidden;
+                
+                transition: all 3s linear 0s;
+                transform:translate(-50px,0);
+                position: absolute;
+                display: flex;                /* 子元素横向排列 */
+                align-items: center;
+            }
+            .BookDivson{
+                display: inline-block;
+                flex: 0 0 1000px; /* width:1000px; */
+                height:562.5px;
+                position: relative;
+                transition: all 3s linear 0s;
+            }
+            .overBook{
+                 width: 1000px;
+
+                height: auto;
+                position: absolute;
+                margin: 0 auto; /* 居中显示 */
+                z-index: -1;
+            }
+            .leftBook{
+                position: absolute;
+
+                width: 130px;
+                height: 665px;
+                /* transform:translate(-70px,8px); */
+                z-index: 1;
+                transition: all 3s linear 0s;
+                transform:translate(-590px,8px);
+            }
+            .rightBook{
+                
+                position: absolute;
+                width: 270px;
+                /* width:260px; */
+                z-index: 1;
+                transform:translate(552px,0);
+            }
+            .midumText{
+                position: absolute; 
+                top: 50%;           
+                left: 50%;          
+                transform: translate(-50%, -50%); 
+                font-family: "STXingkai", "华文行楷", serif;
+                font-size: 45pt;
+                line-height: 33pt;
+                text-align: center;
+
+            }
+            .midumText p{
+                color: #ab7945;
+                text-align: left;
+            }
+
+            .nextImage{
+                left: 900px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+            }
+            .lastImage{
+                left: 50px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+                
+            }
+
+        </style>
+        <script type="text/javascript">
+
+
+
+            function changePage(i){
+                if(i=="1"){
+                    window.location.replace("PageFive_2.html");
+                }else if(i=="-1"){
+                    window.location.replace("PageFive.html");
+                }
+            }
+        </script>
+    </head>
+    <body >
+        <!-- <a href="PageTwo.html"><img class="PageOneCoin" src="img/PageOneIcon.png" alt="牡丹亭" /></a> -->
+         <div  class="BookDivDiv">
+            <img  class="leftBook" src="img/ModelPageImages/LeftFrame.png" />
+
+            <div class="BookDiv" >
+                <div  class="BookDivson">
+                    <img  class="overBook" src="img/ModelPageImages/downBG.png"  /> 
+
+                    <div class="midumText">
+                        
+                        <p>关关雎鸠，</p>
+                        <p style="text-indent: 2em;">在河之洲……</p>
+                    </div>
+
+
+                    <img class="nextImage" src="img/ModelPageImages/RightBT.png"  onclick="changePage(1)"/>
+                    <img class="lastImage" src="img/ModelPageImages/LeftBT.png"  onclick="changePage(-1)"/>
+                </div>
+                
+            </div>
+
+            <img class="rightBook" src="img/ModelPageImages/RightFrame.png" />
+         </div>
+        
+    </body>
+</html>

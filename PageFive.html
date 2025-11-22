@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>第三页</title>
+        <meta charset="utf-8"/>
+        <style type="text/css">
+            html,body{
+                width: 100%;
+                height: 100%;
+                overflow:hidden;
+                margin:0 auto;
+                position:relative;
+            }
+            body{
+                background-image: url("img/ModelPageImages/PageOneBackground.png");
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .BookDivDiv{
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                transform:scale(1.55);
+
+            }
+            .BookDiv{
+                width:1000px;
+                height:563px;
+                overflow: hidden;
+                
+                transition: all 3s linear 0s;
+                transform:translate(-50px,0);
+                position: absolute;
+                display: flex;                /* 子元素横向排列 */
+                align-items: center;
+            }
+            .BookDivson{
+                display: inline-block;
+                flex: 0 0 1000px; /* width:1000px; */
+                height:562.5px;
+                position: relative;
+                transition: all 3s linear 0s;
+            }
+            .overBook{
+                 width: 1000px;
+
+                height: auto;
+                position: absolute;
+                margin: 0 auto; /* 居中显示 */
+            }
+            .leftBook{
+                position: absolute;
+
+                width: 130px;
+                height: 665px;
+                /* transform:translate(-70px,8px); */
+                z-index: 1;
+                transition: all 3s linear 0s;
+                transform:translate(-590px,8px);
+            }
+            .rightBook{
+                
+                position: absolute;
+                width: 270px;
+                /* width:260px; */
+                z-index: 1;
+                transform:translate(552px,0);
+            }
+
+            .textDiv{
+                width:500px;
+                height:562.5px;
+                /* overflow: hidden; */
+                /* transition: all 3s linear 0s;
+                transform:translate(-50px,0); */
+                top:75px;
+                left:300px;
+                position: absolute;
+                z-index: 2;
+            }
+            #textTitle{
+
+                font-family: "STXingkai", "华文行楷", serif;
+                font-size: 30pt;
+                line-height: 33pt;
+                text-align: center;
+                z-index: 2;
+            }
+
+            .instrumentDiv{
+                width: 150px;
+                height: auto;
+                position: absolute;
+                z-index: 2;
+                filter: drop-shadow(0 0 4px rgba(224, 174, 10, 0.8));
+
+                transition: filter 0.3s ease;
+            }
+            .instrumentDiv:hover{
+                transform: translate(0,-10px);
+
+                filter: drop-shadow(0 0 12px rgb(255, 196, 2));
+                cursor: pointer;
+            }
+            .musicImage{
+                position: absolute;
+                width: 100px;
+                left: 800px;
+                top: 25px;
+                cursor: pointer;
+            }
+            .nextImage{
+                left: 900px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+            }
+            .lastImage{
+                left: 50px;
+                bottom: 25px;
+                cursor: pointer;
+                position: absolute;
+            }
+            .modal-overlay {
+                display: none; /* 默认隐藏 */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5); /* 半透明黑色 */
+                z-index: 1000; /* 确保在最上层 */
+                justify-content: center;
+                align-items: center;
+            }
+
+                /* 弹框内容框 */
+            .modal-content {
+                background-image:url("img/ModelPageImages/downBG.png");
+                background-size:cover;
+                padding: 30px;
+                border-radius: 8px;
+                width: 1200px; /* 你可以调整宽度 */
+                height: 675.6px;
+                max-width: 90%;
+                position: relative;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            }
+
+
+            .modal-content h2 {
+                margin-top: 0;
+            }
+
+                
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 100px;
+                cursor: pointer;
+                color: #aaa;
+                z-index: 10;
+            }
+
+            .close-btn:hover {
+                color: #000;
+            }
+
+            .modal-content p {
+                line-height: 1.6;
+            }
+            .popupBox{
+                width: 100%;
+                height: 100%;
+                display: flex;
+
+            }
+            .popupLeftFrame{
+                display: flex;
+                width: 33.3%;
+                height: 100%;
+
+                justify-content: center;
+                align-items: center;
+            }
+            .popupRightFrame{
+                display: flex;
+                width: 66.6%;
+                height: 100%;
+                
+                flex-direction: column;
+            }
+            .popupBoxImage{
+                width:360px;
+
+            }
+            .popupBoxTitle{
+                font-family: "STXingkai", "华文行楷", serif;
+                font-size: 30pt;
+                line-height: 33pt;
+                text-align: center;
+                /* writing-mode: vertical-rl; */
+            }
+            .popupBoxText{
+                text-align: center;
+                font-family: "STKaiti", "华文楷体", serif; /* 兼容不同浏览器 */
+                font-size: 20pt;
+                line-height: 22pt;
+            }
+            .popupBoxText p{
+                display: inline-block;    /* 让 <p> 能被 text-align 控制 */
+                max-width: 600px;         /* 限制宽度，更美观 */
+                text-align: left;         /* 段落内文字左对齐（推荐） */
+                margin: 1px 0;
+            }
+            .littleName{
+                height: 50px;
+                width: 30px;
+                background-color: rgba(175, 129, 28, 0.432);
+                border: 1.5px solid rgb(122, 65, 0);
+                border-radius: 7px;
+                position: absolute;
+
+                display: flex;
+                align-content: center;
+                align-items: center;     /* 垂直居中 */
+                justify-content: center; 
+                font-family: "STXingkai", "华文行楷", serif;
+                font-size: 14pt;
+                line-height: 22pt;
+                writing-mode: vertical-rl;
+            }
+
+        </style>
+        <script type="text/javascript">
+
+
+            function changePage(i){
+                if(i=="1"){
+                    window.location.replace("PageFive_1.html");
+                }else if(i=="-1"){
+                    window.location.replace("PageFour.html");
+                }
+            }
+        </script>
+    </head>
+    <body >
+        <!-- <a href="PageTwo.html"><img class="PageOneCoin" src="img/PageOneIcon.png" alt="牡丹亭" /></a> -->
+         <div  class="BookDivDiv">
+            <img  class="leftBook" src="img/ModelPageImages/LeftFrame.png" />
+            <div class="BookDiv" >
+                <div  class="BookDivson">
+                    <div class="textDiv">
+                        <div id="textTitle">
+                            “寻梦径”之昆曲人物介绍
+                        </div>
+                    </div>
+
+                    <img  class="overBook" src="img/ModelPageImages/downBG.png"  /> 
+                    <img  class="instrumentDiv" src="img/pageThreeIamges/character_1.png" style="left:50px;top:150px; " onclick="openPopup(0)" /> 
+                    <div class = "littleName" style="left:170px;top:410px; ">
+                        生
+                    </div>
+                    <img  class="instrumentDiv" src="img/pageThreeIamges/character_2.png" style="left:245px;top:170px; width: 165px;height: auto;" onclick="openPopup(1)"/> 
+                    <div class = "littleName" style="left:335px;top:410px;">
+                        旦
+                    </div>
+                    <img  class="instrumentDiv" src="img/pageThreeIamges/character_3.png" style="left:430px;top:150px; " onclick="openPopup(2)"/> 
+                    <div class = "littleName"  style="left:555px;top:410px; ">
+                        净
+                    </div>
+                    <img  class="instrumentDiv" src="img/pageThreeIamges/character_4.png" style="left:630px;top:110px;width: 170px; " onclick="openPopup(3)"/> 
+                    <div class = "littleName"  style="left:760px;top:410px; ">
+                      末
+                    </div>
+                    <img  class="instrumentDiv" src="img/pageThreeIamges/character_5.png" style="left:820px;top:150px; " onclick="openPopup(4)"/> 
+                    <div class = "littleName"  style="left:940px;top:410px; ">
+                        丑
+                    </div>
+
+                    <img  class="musicImage" src="img/ModelPageImages/musicBT.png" onclick="" />
+
+                    <img class="nextImage" src="img/ModelPageImages/RightBT.png"  onclick="changePage(1)"/>
+                    <img class="lastImage" src="img/ModelPageImages/LeftBT.png"  onclick="changePage(-1)"/>
+                </div>
+                
+
+            </div>
+            <img class="rightBook" src="img/ModelPageImages/RightFrame.png" />
+         </div>
+         
+         <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+            <div class="modal-content">
+            <!-- 关闭按钮 × -->
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+
+            <!-- 弹框内容 -->
+            <div class="popupBox">
+
+                <div class="popupLeftFrame">
+
+                <img class ="popupBoxImage" src="img/pageFourImages/instrument_1.png"/>
+                </div>
+
+                <div class="popupRightFrame">
+                <br><br><br><br>
+                <text class="popupBoxTitle">
+                    <!-- <p  class="popupBoxTitleP">笛——一曲笛声绕云霓</p> -->
+                </text>
+                <br><br><br>
+                <text class="popupBoxText">
+                    <p class="popupTextP" style="text-indent: 2em;"></p>
+                    <p class="popupTextP" style="text-indent: 2em;"></p>
+                </text>
+                </div >
+            </div>
+            </div>
+        </div>
+        <script>
+
+            const modalOverlay = document.getElementById('modalOverlay');
+            const popupImage = document.getElementsByClassName('popupBoxImage');
+            const popupBoxTitle = document.getElementsByClassName('popupBoxTitle');
+            const popupTextP = document.getElementsByClassName('popupTextP');//两个
+            const textTitleArr = [
+                "生—儒雅俊秀的男性角色",
+                "旦 —女性角色的总称", 
+                "净一性格鲜明的“花脸”",
+                "末—沉稳老成的配角",
+                "丑—插科打诨的喜剧角色"
+            ];
+
+            const textPArr1 = [
+                "“生”行是整出戏的正面男性主角，通常为文人、书生、官员等。要求演员气质儒雅，唱功、念白功底深厚。",
+                "“旦”行是戏曲中所有女性角色的统一称呼，是舞台上的焦点。根据年龄、身份、性格的不同，有极为细致的划分。",
+                "“净”行俗称“花脸”，以其在脸上勾画色彩斑斓的图案（脸谱）为标志。多扮演性格粗犷、刚烈或豪迈的男性角色，声音洪亮，动作幅度大。",
+                "在现代昆曲中，“末”行常与“生”行有部分融合，但其特点依然鲜明。",
+                "“丑”行在鼻梁上勾画一块白色“豆腐块”，又称“小花脸”。是戏曲中的喜剧担当。"
+            ];
+
+            const textPArr2 = [
+                "其中“巾生”又称“小生”，多扮演年轻俊美的书生、公子。手持折扇，头戴文生巾，风度翩翩。演唱时常用小嗓（假声），嗓音清丽柔美，表演突出“书卷气”和“风流态”。一般分为官生，巾生，穷生和雄尾生四种。",
+                "其中“闺门旦”，多是扮演青春靓丽、情窦初开的名门闺秀，是旦行中最重要的角色之一，唱做并重，表演含蓄内敛，气质温婉，曲调悠扬。一般分为闺门旦，正旦，贴旦，武旦，老旦五种。",
+                "特点：脸谱的不同颜色和图案具有象征意义，如红色表忠勇，黑色表刚直，白色表奸诈。一般分为正净和副净两种。",
+                "特点：多扮演社会地位较高、性格沉稳的中老年男性配角，如官员、管家、仆人等等。表演风格庄重、老练。一般分为副末和老生两种。",
+                "特点：扮演的人物繁多，有幽默善良的小人物，也有奸诈卑鄙的恶吏。语言通俗诙谐，动作灵活滑稽，负责调节舞台气氛，一般分为文丑与武丑两种。"
+            ];
+            const imageSrcArr = [
+                "img/pageThreeIamges/character_1.png",
+                "img/pageThreeIamges/character_2.png",
+                "img/pageThreeIamges/character_3.png",
+                "img/pageThreeIamges/character_4.png",
+                "img/pageThreeIamges/character_5.png"
+            ];
+
+            function openPopup(i) {
+                // console.log(textTitleArr[i]);
+                popupBoxTitle[0].innerHTML=textTitleArr[i];
+                popupTextP[0].innerHTML=textPArr1[i];
+                popupTextP[1].innerHTML=textPArr2[i];
+                popupImage[0].src = imageSrcArr[i];
+                modalOverlay.style.display = 'flex'; 
+                
+            }
+
+            function closePopup() {
+                modalOverlay.style.display = 'none';
+            }
+
+            function closeModalOnOverlay(event) {
+                if (event.target === modalOverlay) {
+                    closePopup();
+                }
+            }
+
+        </script>
+    </body>
+</html>
